@@ -77,22 +77,31 @@ def listen() -> None:
 	face_analyser.listen()
 	common_options.listen()
 
+# Ensure CFG is defined properly in this module
+CFG = {
+	'server_name': 'localhost',
+	'server_port': 7860,
+	'server_share': False,
+	'ssl_verify': True
+}
+
+
 
 # def run(ui : gradio.Blocks) -> None:
 # 	concurrency_count = min(8, multiprocessing.cpu_count())
 # 	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, share=False, quiet = True, inbrowser = facefusion.globals.open_browser)
+
 def run(ui: gradio.Blocks) -> None:
-	from facefusion.globals import CFG
 	concurrency_count = min(8, multiprocessing.cpu_count())
-	server_name = CFG.server_name
-	server_port = CFG.server_port
-	ssl_verify = CFG.ssl_verify
+	server_name = ""
+	server_port = 0
+	ssl_verify = True
 
 	ui.queue(concurrency_count=concurrency_count).launch(
 		inbrowser=True,
 		server_name=server_name,
 		server_port=server_port,
-		share=CFG.server_share,
+		share=False,
 		ssl_verify=ssl_verify,
 		prevent_thread_lock=True,
 		show_error=True
