@@ -94,7 +94,7 @@ CFG = {
 def run(ui: gradio.Blocks) -> None:
 	concurrency_count = min(8, multiprocessing.cpu_count())
 	server_name = ""
-	server_port = 0
+	server_port = 7860
 	ssl_verify = True
 
 	ui.queue(concurrency_count=concurrency_count).launch(
