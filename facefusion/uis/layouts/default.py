@@ -87,22 +87,8 @@ CFG = {
 
 
 
-# def run(ui : gradio.Blocks) -> None:
-# 	concurrency_count = min(8, multiprocessing.cpu_count())
-# 	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, share=False, quiet = True, inbrowser = facefusion.globals.open_browser)
-
-def run(ui: gradio.Blocks) -> None:
+def run(ui : gradio.Blocks) -> None:
 	concurrency_count = min(8, multiprocessing.cpu_count())
-	server_name = ""
-	server_port = 7860
-	ssl_verify = True
+	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, share=True, quiet = True, inbrowser = facefusion.globals.open_browser)
 
-	ui.queue(concurrency_count=concurrency_count).launch(
-		inbrowser=True,
-		server_name=server_name,
-		server_port=server_port,
-		share=False,
-		ssl_verify=ssl_verify,
-		prevent_thread_lock=True,
-		show_error=True
 	)
